@@ -17,7 +17,7 @@ class ponteiro{
 			System.out.println("y["+i+"]:"+y[i]);
 		}
 		passagemDeArray(y);
-		for(int i =0; i < 5; i++){
+		for(int i = 0; i < 5; i++){
 			System.out.println("y["+i+"]:"+y[i]);
 		}
 	}
