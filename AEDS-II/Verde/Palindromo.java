@@ -2,6 +2,12 @@
  * Mateus Fernandes Barbosa
  * 22/08/2023
  */
+/* int n = string.length();
+ * char [] array = new char[n]
+ * for(int i = 0; i < n; i++){
+ * array[i] = string.charAt(i);
+ * }
+ */
 
 class Palindromo{
 	public static boolean EhPalindromo(String palavra){

@@ -15,7 +15,7 @@ class Selecao extends Geracao {
    /*
     * Contador de operações
     */
-   public static int contador = 0;
+   public static int contadorMovimentacao = 0, contadorComparacao = 0;
    /**
     * Construtor.
     * @param int tamanho do array de numeros inteiros.
@@ -35,12 +35,14 @@ class Selecao extends Geracao {
          for (int j = (i + 1); j < n; j++){
             if (array[menor] > array[j]){
                menor = j;
-	       //contador++;
+	       contadorMovimentacao++;
             }
-	    contador++;
+	    contadorComparacao++;
          }
          swap(menor, i);
+	 contadorMovimentacao += 3;
       }
-      MyIO.println("Contador: "+contador);
+      MyIO.println("Contador Comparacao: "+contadorComparacao);
+      MyIO.println("Contador Movimentacao: "+contadorMovimentacao);
    }
 }
