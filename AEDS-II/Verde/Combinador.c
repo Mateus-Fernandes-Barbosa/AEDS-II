@@ -13,17 +13,19 @@ void combinador(char frase[], char combinado[]){
 			posicao = i;
 		}
 	}
-	char frase1[50], frase2[50];
+	char frase1[25], frase2[25];
 	for(int i = 0; i < posicao; i++){
 		frase1[i] = frase[i];
 	}
 	for(int i = posicao + 1, k = 0; i < strlen(frase) - 1; i++){
 		frase2[k] = frase[i];
 		k++;
+		//printf("tam: %i",strlen(frase2));
 	}
-	int n = strlen(frase1) + strlen(frase2) + 1;
-	printf("%i\n", n);
-	for(int i = 0, j = 0, k = 0; i < n; i++){
+	//printf("tam1: %i\n",strlen(frase1));
+	//printf("tam2: %i\n",strlen(frase2));
+//	printf("%i\n", n);
+	for(int i = 0, j = 0, k = 0; i < strlen(frase1) + strlen(frase2); i++){
 		if(i % 2 == 0 && k < strlen(frase1)){
 			combinado[i] = frase1[k];
 			k++;
@@ -33,14 +35,15 @@ void combinador(char frase[], char combinado[]){
 				combinado[i] = frase2[j];
 				j++;
 			}
+			else{
+				if(k < strlen(frase1)){
+					combinado[i] = frase1[k];
+					k++;
+				}
+			}
 		}
 	}
 }
-int TAM(char frase1[], char frase2[]){
-	int n = strlen(frase1) + strlen(frase2);
-	return n;
-}
-
 int main(){
 char frase1 [50], combinado[50];
 int n;
