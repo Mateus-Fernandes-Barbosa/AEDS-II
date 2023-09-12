@@ -19,7 +19,7 @@ Destaca-se que uma linha de entrada pode ter caracteres não letras
 
 A entrada termina com a leitura de FIM*/
 
-const int MAX = 100;
+const int MAX = 400;
 
 bool FraseEhPalindromo(char palavra[]){
   bool ehPalindromo = false;
