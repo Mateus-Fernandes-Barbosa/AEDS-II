@@ -70,4 +70,18 @@ class Jogador{
 		novo.altura = this.altura;
 		return novo;
 	}
+
+	public void ler(String nomeArquivo) throws Exception {
+		FileReader arq = new FileReader(nomeArquivo);
+		BufferedReader leia = new BufferedReader(arq);
+		String json = "";
+		String line = leia.readLine();
+		while(line != null){
+			json += line;
+			line = leia.readLine();
+		}
+
+		leia.close();
+		arq.close();
+	}
 }
