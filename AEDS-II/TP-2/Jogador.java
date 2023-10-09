@@ -29,14 +29,15 @@ class Jogador{
 	//Método Acessório
 	private void AumentarTamArray(){
 		Jogador [] temp = new Jogador [tamArray];
-		for(int i = 0; i < tamArray; i++){
+		for(int i = 0; i < tamArray - 1; i++){
 			temp[i] = array[i];
 		}
-		array = new int [++tamArray];
-		for(int i = posicao; i < n - 1; i++){
+		array = new Jogador [++tamArray];
+		for(int i = 0; i < tamArray - 1; i++){
 			array[i] = temp[i];
 		}
 		tamArray = array.length;
+		temp = null;
 	}
 
 	//funções gets e sets
@@ -300,38 +301,67 @@ class Jogador{
 		return resp;
 	}
 
+	public void OrdenacaoSelecao(String [] array){
+		for(int j = 0; j < tamArray; j++){
+			for(int i = j + 1; i < tamArray; i++){
+				if(array[j].compareTo(array[i]) == 1){
+					String temp = array[j];
+					array[j] = array[i];
+					array[i] = temp; 
+				}
+			}
+		}
+	}
+
 	public static void main(String [] args) throws Exception{
 		Scanner leia = new Scanner(System.in);
 		Jogador jogador = new Jogador();
-		inicio = jogador.now();
-		jogador.ler("/tmp/players.csv");
+		jogador.ler("players.csv");
 		String valor;
-		valor = leia.next();
 		//MyIO.println("Valor: "+valor);
-		for(int i = 0; valor.equals("FIM") != true; i++){
-			jogador.array[i] = jogador.criaArray(Integer.parseInt(valor));
-			contador++;
-			//MyIO.println("Array: "+jogador.array[i]);
-			valor = leia.next();
-			//MyIO.println("Valor: "+valor);
-
-		}
+		tamArray = 1;
 		leia.nextLine();
 		valor = leia.nextLine();
-		while(!valor.equals("FIM")){
-			boolean resp = jogador.Selecao(valor);
-			if(resp){
-				System.out.println("SIM");
-			}
-			else{
-				System.out.println("NAO");
-			}
+		for(int i = 0; !valor.equals("FIM");i++){
+			System.out.println(jogador.array[i].getId() +
+                                        jogador.array[i].getNome() +
+                                        jogador.array[i].getAltura() +
+                                        jogador.array[i].getPeso() +
+                                        jogador.array[i].getUniversidade() +
+                                        jogador.array[i].getBirth() +
+                                        jogador.array[i].getCidade() +
+                                        jogador.array[i].getEstado());
+			jogador.array[i] = jogador.criaArray(Integer.parseInt(valor));
+			System.out.println(jogador.array[i].getId() +
+                                        jogador.array[i].getNome() +
+                                        jogador.array[i].getAltura() +
+                                        jogador.array[i].getPeso() +
+                                        jogador.array[i].getUniversidade() +
+                                        jogador.array[i].getBirth() +
+                                        jogador.array[i].getCidade() +
+                                        jogador.array[i].getEstado());
+
+			jogador.AumentarTamArray();
 			valor = leia.nextLine();
-			//MyIO.println("Valor: "+valor);
 		}
-		fim = jogador.now();
+		String [] strArray = new String [tamArray];
+		jogador.OrdenacaoSelecao(strArray);
+		for(int i = 0; i < tamArray; i++){
+			int j = 0;
+			while(!strArray[i].equals(jogador.array[j].getNome())){
+				j++;
+			}
+			System.out.println(jogador.array[j].getId() + 
+					jogador.array[j].getNome() + 
+					jogador.array[j].getAltura() + 
+					jogador.array[j].getPeso() + 
+					jogador.array[j].getUniversidade() + 
+					jogador.array[j].getBirth() + 
+					jogador.array[j].getCidade() + 
+					jogador.array[j].getEstado());
+		}
 		File arq = new File("matrícula_sequencial.txt");
 		FileWriter escreva = new FileWriter("matrícula_sequencial.txt");
-		escreva.write("matrícula: 810286\t"+ "tempo de execução do algoritmo: "+ ((fim - inicio)/1000.0) + "s.\t" + "número de comparações: "+numComp);
+		escreva.write("matrícula: 810286\t"+ "tempo de execução do algoritmo: "+ "número de comparações: "+numComp);
 	}
 }
